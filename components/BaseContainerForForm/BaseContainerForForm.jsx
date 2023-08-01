@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text, Pressable, Alert } from "react-native";
+import AddButtonComponent from "../AddButtonComponent/AddButtonComponent";
 
 export default function BaseContainerForForm({
   children,
@@ -8,9 +9,15 @@ export default function BaseContainerForForm({
   const { container, title, pres__title, container__avatar } = styles;
 
   return (
-    <View style={container}>
-      {pageTitle === "Реєстрація" && <View style={container__avatar}></View>}
-      <Text style={title}>{pageTitle}</Text>
+    <View style={[container, pageTitle === "Увійти" && { marginTop: 323 }]}>
+      {pageTitle === "Реєстрація" && (
+        <View style={container__avatar}>
+          <AddButtonComponent />
+        </View>
+      )}
+      <Text style={[title, pageTitle === "Увійти" && { marginTop: 32 }]}>
+        {pageTitle}
+      </Text>
       {children}
       <Pressable onPress={() => Alert.alert("onPress", "OK")}>
         <Text style={[title, pres__title]}>{additionalTitle}</Text>

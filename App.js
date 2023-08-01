@@ -3,6 +3,7 @@ import { StyleSheet, View, ImageBackground } from "react-native";
 import { useFonts } from "expo-font";
 import ActivityInd from "./components/ActivityInd/ActivityInd";
 import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
+// import LoginScreen from "./Screens/LoginScreen/LoginScreen";
 
 export default function App() {
   const { container } = styles;
@@ -24,6 +25,7 @@ export default function App() {
     <View style={container}>
       <ImageBackground style={container} source={image}>
         <RegistrationScreen />
+        {/* <LoginScreen /> */}
       </ImageBackground>
       <StatusBar style="auto" />
     </View>
