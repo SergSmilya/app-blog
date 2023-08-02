@@ -1,4 +1,5 @@
-import { StyleSheet, View, Text, Pressable, Alert } from "react-native";
+import { useEffect, useState } from "react";
+import { StyleSheet, View, Text, Pressable, Alert, Image } from "react-native";
 import AddButtonComponent from "../AddButtonComponent/AddButtonComponent";
 
 export default function BaseContainerForForm({
@@ -9,6 +10,17 @@ export default function BaseContainerForForm({
   isShowKeyBoardLog,
 }) {
   const { container, title, pres__title, container__avatar } = styles;
+  const [showAvatar, setShowAvatar] = useState(null);
+
+  const AVATAR = require("../../assets/img/photo_Natali.jpg");
+
+  useEffect(() => {
+    if (AVATAR) {
+      setShowAvatar(true);
+    } else {
+      setShowAvatar(false);
+    }
+  }, []);
 
   return (
     <View
@@ -21,7 +33,11 @@ export default function BaseContainerForForm({
     >
       {pageTitle === "Реєстрація" && (
         <View style={container__avatar}>
-          <AddButtonComponent />
+          <Image style={{ flex: 1, borderRadius: 16 }} source={AVATAR} />
+          <AddButtonComponent
+            showAvatar={showAvatar}
+            setShowAvatar={setShowAvatar}
+          />
         </View>
       )}
       <Text style={[title, pageTitle === "Увійти" && { marginTop: 32 }]}>
