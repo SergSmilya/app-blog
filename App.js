@@ -1,5 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import { useFonts } from "expo-font";
 import ActivityInd from "./components/ActivityInd/ActivityInd";
 import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
@@ -24,8 +30,13 @@ export default function App() {
   return (
     <View style={container}>
       <ImageBackground style={container} source={image}>
-        <RegistrationScreen />
-        {/* <LoginScreen /> */}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={container}
+        >
+          <RegistrationScreen />
+          {/* <LoginScreen /> */}
+        </KeyboardAvoidingView>
       </ImageBackground>
       <StatusBar style="auto" />
     </View>

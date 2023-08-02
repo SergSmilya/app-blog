@@ -5,11 +5,20 @@ export default function BaseContainerForForm({
   children,
   pageTitle,
   additionalTitle,
+  isShowKeyBoardReg,
+  isShowKeyBoardLog,
 }) {
   const { container, title, pres__title, container__avatar } = styles;
 
   return (
-    <View style={[container, pageTitle === "Увійти" && { marginTop: 323 }]}>
+    <View
+      style={[
+        container,
+        isShowKeyBoardReg && { marginTop: 147 },
+        pageTitle === "Увійти" && { marginTop: 323 },
+        isShowKeyBoardLog && { marginTop: 273 },
+      ]}
+    >
       {pageTitle === "Реєстрація" && (
         <View style={container__avatar}>
           <AddButtonComponent />
