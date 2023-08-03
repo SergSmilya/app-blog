@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useFonts } from "expo-font";
 import ActivityInd from "./components/ActivityInd/ActivityInd";
+import TabNavigationComponent from "./components/TabNavigationComponent/TabNavigationComponent";
 import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
 import LoginScreen from "./Screens/LoginScreen/LoginScreen";
 
@@ -39,10 +40,26 @@ export default function App() {
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={container}
           >
-            <Stack.Navigator>
-              <Stack.Screen name="Register" component={RegistrationScreen} />
-              <Stack.Screen name="Login" component={LoginScreen} />
-            </Stack.Navigator>
+            {/* <Stack.Navigator initialRouteName="Register">
+              <Stack.Screen
+                name="Register"
+                component={RegistrationScreen}
+                options={{
+                  headerTitle: () => (
+                    <ImageBackground
+                      style={{ backgroundColor: "transparent" }}
+                      source={image}
+                    />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{ title: "Overview" }}
+              />
+            </Stack.Navigator> */}
+            <TabNavigationComponent />
           </KeyboardAvoidingView>
         </ImageBackground>
         <StatusBar style="auto" />

@@ -1,9 +1,12 @@
 import { Pressable, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ButtonFormComponent({
   handleButtonSubmit,
   children = "Натисніть",
 }) {
+  const navigation = useNavigation();
+
   return (
     <Pressable
       style={{
@@ -15,7 +18,10 @@ export default function ButtonFormComponent({
         marginTop: 43,
         backgroundColor: "#FF6C00",
       }}
-      onPress={handleButtonSubmit}
+      onPress={() => {
+        handleButtonSubmit;
+        navigation.navigate("Posts");
+      }}
     >
       <Text
         style={{
