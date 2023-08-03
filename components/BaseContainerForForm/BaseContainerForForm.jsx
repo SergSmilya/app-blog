@@ -1,5 +1,14 @@
-import { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Pressable, Alert, Image } from "react-native";
+import { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  Alert,
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import AddButtonComponent from "../AddButtonComponent/AddButtonComponent";
 
 export default function BaseContainerForForm({
@@ -13,30 +22,32 @@ export default function BaseContainerForForm({
   const [avatar, setAvatar] = useState(null);
 
   return (
-    <View
-      style={[
-        container,
-        isShowKeyBoardReg && { marginTop: 162 },
-        pageTitle === "Увійти" && { marginTop: 323 },
-        isShowKeyBoardLog && { marginTop: 300 },
-      ]}
-    >
-      {pageTitle === "Реєстрація" && (
-        <View style={container__avatar}>
-          {avatar && (
-            <Image style={{ flex: 1, borderRadius: 16 }} source={avatar} />
-          )}
-          <AddButtonComponent showAvatar={avatar} setAvatar={setAvatar} />
-        </View>
-      )}
-      <Text style={[title, pageTitle === "Увійти" && { marginTop: 32 }]}>
-        {pageTitle}
-      </Text>
-      {children}
-      <Pressable onPress={() => Alert.alert("onPress", "OK")}>
-        <Text style={[title, pres__title]}>{additionalTitle}</Text>
-      </Pressable>
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View
+        style={[
+          container,
+          isShowKeyBoardReg && { marginTop: 162 },
+          pageTitle === "Увійти" && { marginTop: 323 },
+          isShowKeyBoardLog && { marginTop: 300 },
+        ]}
+      >
+        {pageTitle === "Реєстрація" && (
+          <View style={container__avatar}>
+            {avatar && (
+              <Image style={{ flex: 1, borderRadius: 16 }} source={avatar} />
+            )}
+            <AddButtonComponent showAvatar={avatar} setAvatar={setAvatar} />
+          </View>
+        )}
+        <Text style={[title, pageTitle === "Увійти" && { marginTop: 32 }]}>
+          {pageTitle}
+        </Text>
+        {children}
+        <Pressable onPress={() => Alert.alert("onPress", "OK")}>
+          <Text style={[title, pres__title]}>{additionalTitle}</Text>
+        </Pressable>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 

@@ -1,3 +1,5 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -9,7 +11,9 @@ import {
 import { useFonts } from "expo-font";
 import ActivityInd from "./components/ActivityInd/ActivityInd";
 import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
-// import LoginScreen from "./Screens/LoginScreen/LoginScreen";
+import LoginScreen from "./Screens/LoginScreen/LoginScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const { container } = styles;
@@ -28,18 +32,22 @@ export default function App() {
   }
 
   return (
-    <View style={container}>
-      <ImageBackground style={container} source={image}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={container}
-        >
-          <RegistrationScreen />
-          {/* <LoginScreen /> */}
-        </KeyboardAvoidingView>
-      </ImageBackground>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <View style={container}>
+        <ImageBackground style={container} source={image}>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={container}
+          >
+            <Stack.Navigator>
+              <Stack.Screen name="Register" component={RegistrationScreen} />
+              <Stack.Screen name="Login" component={LoginScreen} />
+            </Stack.Navigator>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+        <StatusBar style="auto" />
+      </View>
+    </NavigationContainer>
   );
 }
 
