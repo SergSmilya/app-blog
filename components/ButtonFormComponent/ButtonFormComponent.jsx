@@ -20,7 +20,7 @@ export default function ButtonFormComponent({
       }}
       onPress={() => {
         handleButtonSubmit;
-        navigation.navigate("Posts");
+        navigation.navigate("Home");
       }}
     >
       <Text

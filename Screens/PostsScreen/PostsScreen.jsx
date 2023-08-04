@@ -1,9 +1,11 @@
-import { Text } from "react-native";
+import { View } from "react-native";
+
+import UserInformationComponent from "../../components/UserInformationComponent/UserInformationComponent";
 
 export default function PostsScreen() {
   return (
-    <Text style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      PostsScreen
-    </Text>
+    <View style={{ flex: 1, paddingHorizontal: 16 }}>
+      <UserInformationComponent />
+    </View>
   );
 }

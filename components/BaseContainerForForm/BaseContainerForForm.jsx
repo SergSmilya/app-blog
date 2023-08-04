@@ -5,10 +5,12 @@ import {
   View,
   Text,
   Pressable,
-  Alert,
   Image,
   TouchableWithoutFeedback,
   Keyboard,
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import AddButtonComponent from "../AddButtonComponent/AddButtonComponent";
 
@@ -19,6 +21,7 @@ export default function BaseContainerForForm({
   isShowKeyBoardReg,
   isShowKeyBoardLog,
 }) {
+  const image = require("../../assets/img/photo_BG.jpg");
   const { container, title, pres__title, container__avatar } = styles;
   const [avatar, setAvatar] = useState(null);
   const navigation = useNavigation();
@@ -26,30 +29,39 @@ export default function BaseContainerForForm({
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View
-        style={[
-          container,
-          isShowKeyBoardReg && { marginTop: 162 },
-          pageTitle === "Увійти" && { marginTop: 323 },
-          isShowKeyBoardLog && { marginTop: 300 },
-        ]}
-      >
-        {pageTitle === "Реєстрація" && (
-          <View style={container__avatar}>
-            {avatar && (
-              <Image style={{ flex: 1, borderRadius: 16 }} source={avatar} />
+      <ImageBackground style={{ flex: 1 }} source={image}>
+        <View
+          style={[
+            container,
+            isShowKeyBoardReg && { marginTop: 162 },
+            pageTitle === "Увійти" && { marginTop: 323 },
+            isShowKeyBoardLog && { marginTop: 300 },
+          ]}
+        >
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+          >
+            {pageTitle === "Реєстрація" && (
+              <View style={container__avatar}>
+                {avatar && (
+                  <Image
+                    style={{ flex: 1, borderRadius: 16 }}
+                    source={avatar}
+                  />
+                )}
+                <AddButtonComponent showAvatar={avatar} setAvatar={setAvatar} />
+              </View>
             )}
-            <AddButtonComponent showAvatar={avatar} setAvatar={setAvatar} />
-          </View>
-        )}
-        <Text style={[title, pageTitle === "Увійти" && { marginTop: 32 }]}>
-          {pageTitle}
-        </Text>
-        {children}
-        <Pressable onPress={() => navigation.navigate(PATHTOSCREEN)}>
-          <Text style={[title, pres__title]}>{additionalTitle}</Text>
-        </Pressable>
-      </View>
+            <Text style={[title, pageTitle === "Увійти" && { marginTop: 32 }]}>
+              {pageTitle}
+            </Text>
+            {children}
+            <Pressable onPress={() => navigation.navigate(PATHTOSCREEN)}>
+              <Text style={[title, pres__title]}>{additionalTitle}</Text>
+            </Pressable>
+          </KeyboardAvoidingView>
+        </View>
+      </ImageBackground>
     </TouchableWithoutFeedback>
   );
 }
@@ -83,7 +95,7 @@ const styles = StyleSheet.create({
   container__avatar: {
     position: "absolute",
     left: "50%",
-    transform: [{ translateY: -60 }, { translateX: -45 }],
+    transform: [{ translateY: -60 }, { translateX: -60 }],
     width: 120,
     height: 120,
     borderRadius: 16,

@@ -1,9 +1,11 @@
-import { Text } from "react-native";
+import { View } from "react-native";
+import PostsScreen from "../PostsScreen/PostsScreen";
+import TabNavigationComponent from "../../components/TabNavigationComponent/TabNavigationComponent";
 
 export default function HomeScreen() {
   return (
-    <Text style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      HomeScreen
-    </Text>
+    <View style={{ flex: 1 }}>
+      <TabNavigationComponent />
+    </View>
   );
 }
