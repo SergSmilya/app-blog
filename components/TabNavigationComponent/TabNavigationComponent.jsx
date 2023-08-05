@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image, Pressable, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
 import PostsScreen from "../../Screens/PostsScreen/PostsScreen";
 import CreatePostsScreen from "../../Screens/CreatePostsScreen/CreatePostsScreen";
 import ProfileScreen from "../../Screens/ProfileScreen/ProfileScreen";
@@ -9,6 +10,7 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigationComponent() {
   const navigation = useNavigation();
+
   const ICONGRID = require("../../assets/img/svgTabBar/grid.png");
   const ICONUSER = require("../../assets/img/svgTabBar/user.png");
   const ICONUNION = require("../../assets/img/svgTabBar/union.png");
